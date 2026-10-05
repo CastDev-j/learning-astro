@@ -1,0 +1,22 @@
+---
+// Astro render context
+// https://docs.astro.build/en/reference/api-reference/#params
+import Layout from "@/layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (() => {
+  // TODO en clase: devolver una ruta por cliente con
+  // { params: { clientID }, props: { clientID, content } }
+  return [];
+}) satisfies GetStaticPaths;
+
+const title = "Cliente";
+const { clientID, content } = Astro.props;
+---
+
+<Layout title={title}>
+  <h1>{title}</h1>
+
+  <p>Client ID: {clientID}</p>
+  <p>Content: {content}</p>
+</Layout>

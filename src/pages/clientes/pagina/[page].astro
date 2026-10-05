@@ -1,0 +1,38 @@
+---
+// Pagination
+// https://docs.astro.build/en/guides/routing/#pagination
+import type { GetStaticPaths } from "astro";
+import Layout from "@/layouts/Layout.astro";
+
+export const getStaticPaths = (({ paginate }) => {
+  // TODO en clase: construir el array de rutas y entregarlo a paginate()
+
+  return paginate([], { pageSize: 10 });
+}) satisfies GetStaticPaths;
+
+const title = "Clientes";
+const { page } = Astro.props;
+---
+
+<Layout title={title}>
+  <div class="flex gap-2">
+    <h1>{title}</h1>
+    <p>Page: {page.currentPage}</p>
+  </div>
+  <!-- <ul>
+    {
+      page.data.map((item) => (
+        <li>
+          <a href={`/clientes/${item.params.clientID}`}>
+            Cliente {item.params.clientID}
+          </a>
+        </li>
+      ))
+    }
+  </ul> -->
+
+  <div class="flex gap-2">
+    {page.url.prev && <a href={`${page.url.prev}`}>Anterior</a>}
+    {page.url.next && <a href={`${page.url.next}`}>Siguiente</a>}
+  </div>
+</Layout>
