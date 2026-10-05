@@ -1,0 +1,12 @@
+---
+import { sleep } from "@/lib/sleep";
+
+interface Props {
+  time: number;
+}
+
+const { time } = Astro.props;
+await sleep(time);
+---
+
+<p>this component is rendered after {time} ms</p>

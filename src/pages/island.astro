@@ -1,0 +1,20 @@
+---
+import Async from "@/components/Async.astro";
+import Layout from "@/layouts/Layout.astro";
+
+// Server islands
+// https://docs.astro.build/en/guides/server-islands/
+
+const title = "Islas";
+---
+
+<Layout title={title}>
+  <h1>{title}</h1>
+
+  <Async time={2000} />
+  <Async time={2000} server:defer />
+
+  <Async time={2000} server:defer>
+    <p slot="fallback">This is a deferred async component</p>
+  </Async>
+</Layout>
