@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+    --color-waikawa-gray-50: #f2f6fb;
+    --color-waikawa-gray-100: #e7eff8;
+    --color-waikawa-gray-200: #d4e1f1;
+    --color-waikawa-gray-300: #b9cce8;
+    --color-waikawa-gray-400: #9db2dc;
+    --color-waikawa-gray-500: #8498d0;
+    --color-waikawa-gray-600: #6b7ac0;
+    --color-waikawa-gray-700: #626eac;
+    --color-waikawa-gray-800: #4b5688;
+    --color-waikawa-gray-900: #414a6e;
+    --color-waikawa-gray-950: #262b40;
+}
+
+@layer base {
+    html {
+        font-family: var(--font-roboto);
+        scroll-behavior: smooth;
+    }
+}
