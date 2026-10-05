@@ -1,0 +1,37 @@
+---
+// Astro Font Provider API
+// https://docs.astro.build/en/reference/font-provider-reference/
+//
+// Layouts
+// https://docs.astro.build/en/basics/layouts/
+import "@/styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import { Font } from "astro:assets";
+import NavBar from "@/components/shared/NavBar";
+import { cn } from "@/lib/cn";
+
+interface Props {
+  title?: string;
+  class?: string;
+}
+
+const { title, class: className } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-roboto" preload />
+    <ClientRouter />
+    <title>{title}</title>
+  </head>
+  <body class={cn("min-h-dvh w-full flex flex-col items-center", className)}>
+    <NavBar pathname={Astro.url.pathname} />
+    <slot />
+  </body>
+</html>
