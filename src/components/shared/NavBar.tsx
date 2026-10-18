@@ -1,13 +1,10 @@
-// Front-end frameworks (React)
-// https://docs.astro.build/en/guides/framework-components/
-import React from "react";
 import { cn } from "@/lib/cn";
+import React, { type FC } from "react";
 
-interface Props {
+interface config {
   pathname: string;
 }
-
-const NavBar = ({ pathname }: Props) => {
+const NavBar: FC<config> = ({ pathname }) => {
   const links = [
     { href: "/", label: "Inicio" },
     { href: "/clientes/pagina/1", label: "Clientes" },
@@ -15,28 +12,27 @@ const NavBar = ({ pathname }: Props) => {
   ];
 
   return (
-    <nav className="w-full border-b border-waikawa-gray-200">
-      <ul className="flex items-center gap-4">
-        {links.map((link) => {
-          const isActive = pathname === link.href;
-
-          return (
-            <li key={link.href}>
+    <header className={cn("w-full flex justify-center my-4")}>
+      <nav>
+        <ul className="flex gap-6 flex-wrap justify-center">
+          {links.map((link) => (
+            <li key={link.href} className="list-none">
               <a
-                href={link.href}
-                aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "text-sm text-waikawa-gray-600 hover:text-waikawa-gray-900",
-                  isActive && "font-medium text-waikawa-gray-900 underline",
+                  "text-xl px-5 py-3 border-b-2 transition-colors hover:border-b-waikawa-gray-700 hover:text-waikawa-gray-700",
+                  link.href === pathname
+                    ? "border-b-waikawa-gray-700 text-waikawa-gray-700"
+                    : "border-transparent",
                 )}
+                href={link.href}
               >
                 {link.label}
               </a>
             </li>
-          );
-        })}
-      </ul>
-    </nav>
+          ))}
+        </ul>
+      </nav>
+    </header>
   );
 };
 
